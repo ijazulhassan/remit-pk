@@ -4,232 +4,200 @@
 <meta charset="UTF-8">
 <meta name="viewport" content="width=device-width, initial-scale=1.0">
 <title>Cheapest way to send money to Pakistan (2026) | RemitPK</title>
-<meta name="description" content="Compare real fees and exchange rates from Wise, Remitly and WorldRemit for sending money from the UK, UAE and US to Pakistan. Updated regularly.">
+<meta name="description" content="Live calculator comparing real fees and exchange rates from Wise, Remitly and WorldRemit for sending money from the UK, UAE and US to Pakistan. Bank transfer, cash pickup and Easypaisa/JazzCash compared.">
+<meta name="theme-color" content="#14322C">
+<link rel="canonical" href="https://ijazulhassan.github.io/remit-pk/">
+
+<meta property="og:type" content="website">
+<meta property="og:title" content="Cheapest way to send money to Pakistan (2026)">
+<meta property="og:description" content="Enter your amount. See exactly what your family receives from each provider — and what the wrong choice costs you over a year.">
+
 <link rel="preconnect" href="https://fonts.googleapis.com">
 <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
-<link href="https://fonts.googleapis.com/css2?family=Fraunces:opsz,wght@9..144,500;9..144,600&family=Inter:wght@400;500;600;700&display=swap" rel="stylesheet">
+<link href="https://fonts.googleapis.com/css2?family=Fraunces:opsz,wght@9..144,500;9..144,600;9..144,700&family=IBM+Plex+Mono:wght@400;500&family=Inter:wght@400;500;600;700&display=swap" rel="stylesheet">
 <link rel="stylesheet" href="style.css">
 </head>
 <body>
 
+<a class="skip" href="#calc">Skip to the calculator</a>
+
 <header class="site-header">
   <div class="wrap">
-    <a href="/" class="logo">Remit<span>PK</span></a>
+    <a href="/" class="logo">Remit<sup><span>PK</span></sup></a>
     <nav class="site-nav">
-      <a href="#uk">UK</a>
-      <a href="#uae">UAE</a>
-      <a href="#us">US</a>
+      <a href="#calc">Compare</a>
+      <a href="#guides">Corridors</a>
       <a href="#faq">FAQ</a>
     </nav>
   </div>
 </header>
 
+<!-- ============ HERO + CALCULATOR ============ -->
 <section class="hero">
   <div class="wrap">
-    <p class="eyebrow">Updated 26 August 2026</p>
-    <h1>The cheapest way to send money to Pakistan</h1>
-    <p class="hero-sub">Real fees, real exchange rates, three corridors. No sign-up, no guesswork &mdash; just the numbers, side by side.</p>
-    <div class="hero-stat">
-      <span class="hero-stat-value">Rs 79,430</span>
-      <span class="hero-stat-label">what &pound;200 gets your family right now, best provider</span>
+    <p class="eyebrow"><span class="pulse"></span>Rates checked <time datetime="2026-08-26">26 August 2026</time></p>
+    <h1>Send money to Pakistan.<br><em>Keep more of it.</em></h1>
+    <p class="hero-sub">Three providers, three corridors, every payout method &mdash; priced for <strong>your</strong> amount, not a generic example. No sign-up, no email, no guesswork.</p>
+  </div>
+
+  <div class="wrap">
+    <div class="calc" id="calc">
+
+      <div class="calc-grid">
+        <!-- FROM -->
+        <div class="field field-corridor">
+          <span class="field-label" id="lbl-from">Sending from</span>
+          <div class="pills" role="radiogroup" aria-labelledby="lbl-from" id="corridorPills">
+            <button type="button" class="pill is-on" role="radio" aria-checked="true"  data-corridor="uk"><span class="pill-flag">GB</span>United Kingdom</button>
+            <button type="button" class="pill"       role="radio" aria-checked="false" data-corridor="uae"><span class="pill-flag">AE</span>UAE</button>
+            <button type="button" class="pill"       role="radio" aria-checked="false" data-corridor="us"><span class="pill-flag">US</span>United States</button>
+          </div>
+        </div>
+
+        <!-- AMOUNT -->
+        <div class="field field-amount">
+          <label class="field-label" for="amount">You send</label>
+          <div class="money-input">
+            <span class="money-symbol" id="curSymbol">&pound;</span>
+            <input id="amount" type="number" inputmode="decimal" min="1" max="1000000" step="1" value="500" aria-describedby="amountHint">
+            <span class="money-code" id="curCode">GBP</span>
+          </div>
+          <div class="chips" id="presetChips" aria-label="Common amounts"></div>
+          <p class="hint" id="amountHint">Change it &mdash; the whole table follows.</p>
+        </div>
+
+        <!-- METHOD -->
+        <div class="field field-method">
+          <span class="field-label" id="lbl-method">They receive by</span>
+          <div class="seg" role="radiogroup" aria-labelledby="lbl-method" id="methodSeg">
+            <button type="button" class="seg-btn is-on" role="radio" aria-checked="true"  data-method="bank">Bank transfer</button>
+            <button type="button" class="seg-btn"       role="radio" aria-checked="false" data-method="cash">Cash pickup</button>
+            <button type="button" class="seg-btn"       role="radio" aria-checked="false" data-method="wallet">Easypaisa / JazzCash</button>
+          </div>
+          <p class="hint" id="methodHint">Most providers quote their best rate on bank deposits.</p>
+        </div>
+      </div>
+
+      <!-- VERDICT -->
+      <div class="verdict" id="verdict" aria-live="polite">
+        <div class="verdict-main">
+          <p class="verdict-kicker">Best value right now</p>
+          <p class="verdict-line"><span class="verdict-provider" id="vProvider">&mdash;</span> delivers <span class="verdict-amount" id="vAmount">Rs 0</span></p>
+        </div>
+        <div class="verdict-delta" id="vDelta"></div>
+      </div>
+
     </div>
   </div>
 </section>
 
-<section class="intro">
+<!-- ============ RESULTS ============ -->
+<section class="results" id="results">
+  <div class="wrap">
+    <div class="results-head">
+      <h2>What each provider actually delivers</h2>
+      <p class="results-sub" id="resultsSub">Ranked by what lands in the recipient&rsquo;s hands, after fees and the provider&rsquo;s exchange-rate margin.</p>
+    </div>
+
+    <ol class="rows" id="rows"></ol>
+
+    <!-- THE HOOK -->
+    <aside class="insight" id="insight" hidden>
+      <div class="insight-icon" aria-hidden="true">&#8635;</div>
+      <div class="insight-body">
+        <p class="insight-kicker" id="insightKicker">If you send this every month</p>
+        <p class="insight-line" id="insightLine"></p>
+        <p class="insight-foot" id="insightFoot"></p>
+      </div>
+    </aside>
+
+    <p class="disclaimer">
+      Figures are <strong>indicative</strong> and refreshed periodically &mdash; live rates move by the minute.
+      Always confirm the final quote on the provider&rsquo;s own site before you send.
+    </p>
+  </div>
+</section>
+
+<noscript>
+  <section class="results">
+    <div class="wrap">
+      <p class="disclaimer"><strong>The live calculator needs JavaScript.</strong> Indicative pricing on &pound;500 UK &rarr; Pakistan by bank transfer: Wise &mdash; &pound;3.29 fee at 397.4 PKR (about Rs 197,400). Remitly &mdash; no fee at 393.1 PKR (about Rs 196,600). WorldRemit &mdash; &pound;1.99 fee at 391.8 PKR (about Rs 195,100).</p>
+    </div>
+  </section>
+</noscript>
+
+<!-- ============ TRUST ============ -->
+<section class="trust">
+  <div class="wrap">
+    <ul class="trust-list">
+      <li><strong>Nothing to sign up for.</strong> No account, no email, no app. Read the table and go.</li>
+      <li><strong>Every provider is regulated.</strong> Wise, Remitly and WorldRemit are licensed money transfer businesses, not informal channels.</li>
+      <li><strong>The ranking isn&rsquo;t for sale.</strong> Order is set by the maths above &mdash; whoever delivers the most rupees sits on top, commission or not.</li>
+    </ul>
+  </div>
+</section>
+
+<!-- ============ CORRIDOR GUIDES (static, for search) ============ -->
+<section class="guides" id="guides">
   <div class="wrap narrow">
-    <p>Every provider quotes a different exchange rate and a different fee &mdash; and the gap between the best and worst option on the same route can be worth thousands of rupees. Below are the three corridors that matter most for the Pakistani diaspora: <strong>UK, UAE and US to Pakistan</strong>. Pick yours.</p>
+    <h2 class="guides-title">The three corridors, in plain terms</h2>
+
+    <article class="guide">
+      <h3>United Kingdom &rarr; Pakistan</h3>
+      <p>The UK is the largest remittance corridor into Pakistan outside the Gulf, and the one where provider choice matters most. <strong>Wise</strong> typically wins on straight bank deposits because it converts at the true mid-market rate and charges its margin openly as a flat fee. The catch: Wise does not offer cash pickup in Pakistan, so if your family collects in person it isn&rsquo;t an option &mdash; switch the toggle above to Cash pickup and it drops out of the table entirely.</p>
+      <p>For cash and mobile wallet payouts, <strong>Remitly</strong> and <strong>WorldRemit</strong> compete directly. Remitly&rsquo;s Express option can land funds in minutes but prices that speed into the rate; its Economy option is slower and closer to Wise on value.</p>
+    </article>
+
+    <article class="guide">
+      <h3>UAE &rarr; Pakistan</h3>
+      <p>The tightest margins of the three. The Gulf corridor is fiercely contested &mdash; exchange houses, banks and app-based providers all chase the same workers sending money home monthly, so the spread between best and worst is narrower than on the UK or US routes. That doesn&rsquo;t make comparison pointless: promotional rates rotate constantly, and small per-transfer gaps still add up to a real number across twelve transfers a year.</p>
+      <p>Mobile wallet payouts &mdash; <strong>Easypaisa</strong> and <strong>JazzCash</strong> &mdash; have grown fastest here, since the recipient needs no bank account and the money arrives on a phone within minutes.</p>
+    </article>
+
+    <article class="guide">
+      <h3>United States &rarr; Pakistan</h3>
+      <p>US transfers split cleanly by purpose. For large, occasional amounts &mdash; university tuition, property, a family emergency &mdash; the exchange-rate margin dwarfs the fee, so a transparent mid-market provider saves the most in absolute rupees. For smaller monthly support payments where arrival speed matters more than the last few hundred rupees, an instant card-funded transfer can be worth the trade-off.</p>
+      <p>Watch the funding method too: paying by debit or credit card is quicker but usually carries a surcharge that a direct bank debit avoids.</p>
+    </article>
   </div>
 </section>
 
-<section class="corridor" id="uk">
-  <div class="wrap">
-    <div class="corridor-head">
-      <span class="corridor-route">United Kingdom <span class="arrow">&rarr;</span> Pakistan</span>
-      <h2>Send from the UK</h2>
-      <p class="corridor-sub">Based on sending &pound;500 to a Pakistani bank account.</p>
-    </div>
-
-    <div class="table-wrap">
-      <table>
-        <thead>
-          <tr>
-            <th>Provider</th>
-            <th>Fee</th>
-            <th>Exchange rate</th>
-            <th>They receive</th>
-            <th>Delivery</th>
-            <th></th>
-          </tr>
-        </thead>
-        <tbody>
-          <tr class="best">
-            <td class="provider">Wise <span class="tag">Best rate</span></td>
-            <td>&pound;3.29</td>
-            <td>1 GBP = 397.4 PKR</td>
-            <td>Rs 197,300</td>
-            <td>Within hours</td>
-            <td><a class="btn" href="#" data-provider="wise-uk">Send &rarr;</a></td>
-          </tr>
-          <tr>
-            <td class="provider">Remitly</td>
-            <td>&pound;0 &ndash; &pound;2.99</td>
-            <td>1 GBP = 393.1 PKR</td>
-            <td>Rs 195,400</td>
-            <td>Minutes &ndash; 1 day</td>
-            <td><a class="btn" href="#" data-provider="remitly-uk">Send &rarr;</a></td>
-          </tr>
-          <tr>
-            <td class="provider">WorldRemit</td>
-            <td>&pound;1.99</td>
-            <td>1 GBP = 391.8 PKR</td>
-            <td>Rs 195,050</td>
-            <td>Minutes &ndash; 1 day</td>
-            <td><a class="btn" href="#" data-provider="worldremit-uk">Send &rarr;</a></td>
-          </tr>
-        </tbody>
-      </table>
-    </div>
-
-    <p class="corridor-note">Wise usually wins on straight bank transfers because it charges the true mid-market rate plus a flat fee, rather than folding its margin into the exchange rate. If your family needs <strong>cash pickup</strong> instead of a bank deposit, Remitly is typically faster and often has zero fee on card-funded transfers.</p>
-  </div>
-</section>
-
-<section class="corridor alt" id="uae">
-  <div class="wrap">
-    <div class="corridor-head">
-      <span class="corridor-route">UAE <span class="arrow">&rarr;</span> Pakistan</span>
-      <h2>Send from the UAE</h2>
-      <p class="corridor-sub">Based on sending AED 2,000 to a Pakistani bank account.</p>
-    </div>
-
-    <div class="table-wrap">
-      <table>
-        <thead>
-          <tr>
-            <th>Provider</th>
-            <th>Fee</th>
-            <th>Exchange rate</th>
-            <th>They receive</th>
-            <th>Delivery</th>
-            <th></th>
-          </tr>
-        </thead>
-        <tbody>
-          <tr class="best">
-            <td class="provider">Wise <span class="tag">Best rate</span></td>
-            <td>AED 11.50</td>
-            <td>1 AED = 77.9 PKR</td>
-            <td>Rs 154,860</td>
-            <td>Within hours</td>
-            <td><a class="btn" href="#" data-provider="wise-uae">Send &rarr;</a></td>
-          </tr>
-          <tr>
-            <td class="provider">WorldRemit</td>
-            <td>AED 0 &ndash; 9.99</td>
-            <td>1 AED = 77.1 PKR</td>
-            <td>Rs 153,400</td>
-            <td>Minutes &ndash; 1 day</td>
-            <td><a class="btn" href="#" data-provider="worldremit-uae">Send &rarr;</a></td>
-          </tr>
-          <tr>
-            <td class="provider">Remitly</td>
-            <td>AED 0 &ndash; 12.99</td>
-            <td>1 AED = 76.8 PKR</td>
-            <td>Rs 152,900</td>
-            <td>Minutes &ndash; 1 day</td>
-            <td><a class="btn" href="#" data-provider="remitly-uae">Send &rarr;</a></td>
-          </tr>
-        </tbody>
-      </table>
-    </div>
-
-    <p class="corridor-note">The UAE corridor has the tightest margins of the three &mdash; exchange bureaus and app-based transfers compete hard here, so the gap between providers is smaller than on the UK or US routes. Still worth checking before every transfer, since promotions rotate often.</p>
-  </div>
-</section>
-
-<section class="corridor" id="us">
-  <div class="wrap">
-    <div class="corridor-head">
-      <span class="corridor-route">United States <span class="arrow">&rarr;</span> Pakistan</span>
-      <h2>Send from the US</h2>
-      <p class="corridor-sub">Based on sending $500 to a Pakistani bank account.</p>
-    </div>
-
-    <div class="table-wrap">
-      <table>
-        <thead>
-          <tr>
-            <th>Provider</th>
-            <th>Fee</th>
-            <th>Exchange rate</th>
-            <th>They receive</th>
-            <th>Delivery</th>
-            <th></th>
-          </tr>
-        </thead>
-        <tbody>
-          <tr class="best">
-            <td class="provider">Wise <span class="tag">Best rate</span></td>
-            <td>$4.20</td>
-            <td>1 USD = 281.6 PKR</td>
-            <td>Rs 139,930</td>
-            <td>Within hours</td>
-            <td><a class="btn" href="#" data-provider="wise-us">Send &rarr;</a></td>
-          </tr>
-          <tr>
-            <td class="provider">Remitly</td>
-            <td>$0 &ndash; $3.99</td>
-            <td>1 USD = 278.9 PKR</td>
-            <td>Rs 138,700</td>
-            <td>Minutes &ndash; 1 day</td>
-            <td><a class="btn" href="#" data-provider="remitly-us">Send &rarr;</a></td>
-          </tr>
-          <tr>
-            <td class="provider">WorldRemit</td>
-            <td>$3.99</td>
-            <td>1 USD = 277.5 PKR</td>
-            <td>Rs 137,900</td>
-            <td>Minutes &ndash; 1 day</td>
-            <td><a class="btn" href="#" data-provider="worldremit-us">Send &rarr;</a></td>
-          </tr>
-        </tbody>
-      </table>
-    </div>
-
-    <p class="corridor-note">For larger, less frequent transfers (tuition, property, family emergencies) Wise's transparent mid-market rate tends to save the most in absolute rupees. For smaller, regular remittances where speed matters more, Remitly's instant options are worth the small trade-off.</p>
-  </div>
-</section>
-
+<!-- ============ FAQ ============ -->
 <section class="faq" id="faq">
   <div class="wrap narrow">
     <h2>Common questions</h2>
 
-    <details>
+    <details open>
       <summary>Why do exchange rates differ between providers?</summary>
-      <p>Every provider buys currency at roughly the same wholesale "mid-market" rate, then adds its own margin before quoting you a price. Some, like Wise, show that margin as a separate flat fee and pass you the real rate. Others fold the margin into a worse exchange rate so the transfer looks "fee-free" &mdash; but you still pay for it, just less visibly.</p>
+      <p>Every provider buys currency at roughly the same wholesale &ldquo;mid-market&rdquo; rate, then adds a margin before quoting you. Some show that margin openly as a flat fee and pass you the real rate. Others fold it into a worse exchange rate so the transfer looks fee-free &mdash; you still pay, it is just harder to see. That is exactly why this page compares <em>rupees delivered</em> rather than advertised fees.</p>
+    </details>
+
+    <details>
+      <summary>Why does Wise disappear when I pick cash pickup?</summary>
+      <p>Because Wise only pays into Pakistani bank accounts &mdash; it has no cash collection network in Pakistan. Rather than show it with an empty row, the table removes it and ranks the providers that can actually complete that transfer.</p>
     </details>
 
     <details>
       <summary>Is it safe to send money through these apps?</summary>
-      <p>Wise, Remitly and WorldRemit are all regulated money transfer businesses in the countries they operate in, and each processes millions of transfers a year. They're not banks, but they're licensed and monitored specifically for cross-border payments.</p>
+      <p>Wise, Remitly and WorldRemit are all regulated money transfer businesses in the countries where they operate, each processing millions of transfers a year. They are not banks, but they are licensed and supervised specifically for cross-border payments.</p>
     </details>
 
     <details>
-      <summary>How often are these rates updated?</summary>
-      <p>We refresh the numbers on this page regularly. Exchange rates move throughout the day, every day, so treat the figures here as a close guide to who's currently ahead &mdash; always confirm the exact quote on the provider's site before sending.</p>
+      <summary>Bank transfer, cash pickup or mobile wallet &mdash; which is cheapest?</summary>
+      <p>Bank transfer, nearly always, because the provider has no cash-handling cost to recover. Mobile wallets like Easypaisa and JazzCash sit close behind and reach recipients without a bank account. Cash pickup costs the most but puts money in someone&rsquo;s hand the same day, anywhere.</p>
     </details>
 
     <details>
-      <summary>Bank transfer or cash pickup &mdash; which is cheaper?</summary>
-      <p>Bank transfers are almost always cheaper because there's no cash-handling cost for the provider. Cash pickup costs more but gets money into a family member's hands the same day without them needing a bank account.</p>
+      <summary>How often are these numbers updated?</summary>
+      <p>Regularly, but not live. Exchange rates move continuously throughout the day, so treat these figures as a reliable guide to <em>who is currently ahead</em> rather than as a quote. Confirm the exact amount on the provider&rsquo;s site before sending.</p>
     </details>
   </div>
 </section>
 
 <footer class="site-footer">
   <div class="wrap">
-    <p>RemitPK compares publicly available rates from third-party money transfer providers. We may earn a commission when you sign up through a link on this page &mdash; this never affects the rates shown or which provider we recommend. Always confirm the final quote on the provider's own site before sending.</p>
+    <p class="footer-brand">Remit<sup><span>PK</span></sup></p>
+    <p>RemitPK compares publicly available pricing from third-party money transfer providers. We may earn a commission when you sign up through a link on this page &mdash; it never affects the rates shown or the order they appear in, which is decided purely by the calculation above. We are not a money transfer service and never handle your funds.</p>
   </div>
 </footer>
 
