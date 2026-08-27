@@ -126,6 +126,7 @@ a { color: var(--emerald); }
   text-decoration: none;
 }
 .logo span { color: var(--emerald); }
+.logo sup { font-size: .58em; top: -.45em; }
 .site-nav a {
   font-size: .875rem;
   font-weight: 500;
@@ -281,6 +282,11 @@ a { color: var(--emerald); }
   padding: 3px 7px;
 }
 .pill.is-on .pill-flag { background: rgba(255,255,255,.22); }
+
+/* Abbreviated captions swap in on narrow screens. The full name always
+   reaches assistive tech through each button's aria-label, so shortening
+   the visible text costs nothing. */
+.pill-short, .seg-short { display: none; }
 
 /* amount */
 .money-input {
@@ -522,7 +528,7 @@ a { color: var(--emerald); }
 .row-value { display: flex; flex-direction: column; gap: 5px; min-width: 0; }
 .row-received {
   font-family: var(--serif);
-  font-size: 1.4rem;
+  font-size: clamp(1.5rem, 1.15rem + 1.5vw, 1.9rem);
   font-weight: 600;
   font-variant-numeric: tabular-nums;
   letter-spacing: -.015em;
@@ -735,11 +741,17 @@ details p {
   margin: 0;
 }
 
-/* ---------------- responsive ---------------- */
+/* ============================================================
+   RESPONSIVE
+   Most visitors arrive on a phone, so the goal below the tablet
+   breakpoint is to get the ranked results into view fast: shorter
+   control captions, tighter chrome, no stacked segmented control.
+   ============================================================ */
 
+/* Tablet — rows lose the fifth column; CTA drops to its own line. */
 @media (max-width: 900px) {
   .row {
-    grid-template-columns: 30px 1fr auto;
+    grid-template-columns: 30px minmax(0, 1fr) auto;
     grid-template-areas:
       "rank id    facts"
       "val  val   val"
@@ -755,20 +767,126 @@ details p {
   .trust-list { grid-template-columns: 1fr; gap: 18px; }
 }
 
-@media (max-width: 720px) {
-  .calc-grid { grid-template-columns: 1fr; gap: 24px; padding: 24px 20px; }
-  .verdict { padding: 20px; }
-  .verdict-delta { text-align: left; }
-  .vd-lab { margin-left: 0; }
-  .seg { display: grid; grid-template-columns: 1fr; width: 100%; }
-  .seg-btn { text-align: left; }
+/* Small tablet / large phone — single-column calculator. */
+@media (max-width: 780px) {
+  .calc-grid { grid-template-columns: 1fr; gap: 20px; padding: 22px 20px; }
   .hero { padding-top: 40px; }
-  .site-nav a { margin-left: 14px; font-size: .82rem; }
-  .results { padding-top: 46px; }
+  .hero-sub { margin-bottom: 28px; font-size: 1rem; }
+  .results { padding-top: 44px; }
+
+  /* Three equal columns beats a vertical stack: same information,
+     roughly 90px less height above the results. */
+  .seg {
+    display: grid;
+    grid-template-columns: repeat(3, 1fr);
+    width: 100%;
+    gap: 3px;
+  }
+  /* Tablets keep the full captions — there is room for them once the
+     control spans the card. Phones swap to short ones at 560px. */
+  .seg-btn {
+    text-align: center;
+    padding: 10px 6px;
+    font-size: .8rem;
+    line-height: 1.25;
+  }
+
+  .verdict { padding: 18px 20px; gap: 14px; }
+  .verdict-delta { text-align: left; }
+  .vd-lab { margin-left: 0; max-width: none; }
 }
 
-@media (max-width: 420px) {
+/* Phones. */
+@media (max-width: 560px) {
   .wrap { padding: 0 16px; }
-  .row { padding: 16px; }
+  .hero { padding-top: 30px; }
+  .hero .eyebrow { margin-bottom: 14px; }
+  .hero h1 { margin-bottom: 12px; }
+
+  /* Corridor picker as a 3-up grid of short codes — one tap row
+     instead of two wrapped lines. */
+  .pills { display: grid; grid-template-columns: repeat(3, 1fr); gap: 6px; }
+  .pill { justify-content: center; padding: 10px 8px; gap: 6px; }
+  /* The short code says everything the flag badge did — showing both
+     is redundant at this width. */
+  .pill-flag { display: none; }
+  .pill-name { display: none; }
+  .pill-short { display: inline; font-weight: 600; }
+
+  .seg-full { display: none; }
+  .seg-short { display: inline; }
+  .seg-btn { font-size: .82rem; }
+
+  .field-label { margin-bottom: 8px; }
+  .hint { margin-top: 8px; }
+  .money-input { padding: 2px 14px; }
+
+  /* Verdict is the payoff — let the figure own its own line. */
+  .verdict { flex-direction: column; align-items: flex-start; gap: 12px; }
+  .verdict-line { display: flex; flex-direction: column; gap: 2px; line-height: 1.25; }
+  .verdict-provider { font-size: 1.25rem; }
+  .verdict-amount { font-size: 2rem; }
+  .verdict-delta {
+    border-top: 1px solid color-mix(in srgb, var(--paper) 18%, transparent);
+    padding-top: 12px;
+    width: 100%;
+  }
+  .vd-num { display: inline; }
+  .vd-lab { display: inline; }
+
+  .row { padding: 16px; gap: 12px 14px; }
   .row-facts { gap: 14px; }
+  .insight { padding: 20px; gap: 14px; }
+  .results { padding-top: 36px; }
+  .trust { padding: 40px 0; }
+}
+
+/* Very small phones — 320px class devices. */
+@media (max-width: 380px) {
+  .site-header { padding: 14px 0; }
+  .logo { font-size: 1.15rem; }
+  .site-nav a { margin-left: 12px; font-size: .78rem; }
+  .pill { font-size: .8rem; padding: 10px 4px; }
+  .seg-btn { font-size: .78rem; padding: 11px 2px; }
+  .row-facts { gap: 12px; }
+  .fact-v { font-size: .82rem; }
+}
+
+/* Phones held sideways — reclaim vertical space. */
+@media (max-height: 480px) and (orientation: landscape) {
+  .site-header { position: static; }
+  .hero { padding-top: 22px; }
+  .hero h1 { font-size: 1.7rem; }
+  .hero-sub { margin-bottom: 18px; }
+}
+
+/* Touch devices: honour the 44px minimum for anything tappable, and
+   drop the tap-delay and grey flash mobile browsers add by default. */
+@media (pointer: coarse) {
+  .pill, .seg-btn, .chip, .btn, .site-nav a {
+    min-height: 44px;
+    display: inline-flex;
+    align-items: center;
+    justify-content: center;
+  }
+  .chip { padding: 0 14px; }
+  .btn { padding: 0 18px; }
+  summary { padding: 8px 0; }
+  .pill, .seg-btn, .chip, .btn, summary, .site-nav a {
+    -webkit-tap-highlight-color: transparent;
+    touch-action: manipulation;
+  }
+}
+
+/* Same minimums on narrow viewports, so a phone-sized window on a
+   laptop gets the identical layout a phone does. */
+@media (max-width: 560px) {
+  .pill, .seg-btn, .chip, .btn {
+    min-height: 44px;
+    display: inline-flex;
+    align-items: center;
+    justify-content: center;
+  }
+  .chip { padding: 0 14px; }
+  .row-cta .btn { display: flex; width: 100%; }
 }

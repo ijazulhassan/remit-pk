@@ -15,7 +15,7 @@
 <link rel="preconnect" href="https://fonts.googleapis.com">
 <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
 <link href="https://fonts.googleapis.com/css2?family=Fraunces:opsz,wght@9..144,500;9..144,600;9..144,700&family=IBM+Plex+Mono:wght@400;500&family=Inter:wght@400;500;600;700&display=swap" rel="stylesheet">
-<link rel="stylesheet" href="style.css">
+<link rel="stylesheet" href="style.css?v=4">
 </head>
 <body>
 
@@ -48,9 +48,9 @@
         <div class="field field-corridor">
           <span class="field-label" id="lbl-from">Sending from</span>
           <div class="pills" role="radiogroup" aria-labelledby="lbl-from" id="corridorPills">
-            <button type="button" class="pill is-on" role="radio" aria-checked="true"  data-corridor="uk"><span class="pill-flag">GB</span>United Kingdom</button>
-            <button type="button" class="pill"       role="radio" aria-checked="false" data-corridor="uae"><span class="pill-flag">AE</span>UAE</button>
-            <button type="button" class="pill"       role="radio" aria-checked="false" data-corridor="us"><span class="pill-flag">US</span>United States</button>
+            <button type="button" class="pill is-on" role="radio" aria-checked="true"  data-corridor="uk"  aria-label="United Kingdom"><span class="pill-flag" aria-hidden="true">GB</span><span class="pill-name" aria-hidden="true">United Kingdom</span><span class="pill-short" aria-hidden="true">UK</span></button>
+            <button type="button" class="pill"       role="radio" aria-checked="false" data-corridor="uae" aria-label="United Arab Emirates"><span class="pill-flag" aria-hidden="true">AE</span><span class="pill-name" aria-hidden="true">UAE</span><span class="pill-short" aria-hidden="true">UAE</span></button>
+            <button type="button" class="pill"       role="radio" aria-checked="false" data-corridor="us"  aria-label="United States"><span class="pill-flag" aria-hidden="true">US</span><span class="pill-name" aria-hidden="true">United States</span><span class="pill-short" aria-hidden="true">USA</span></button>
           </div>
         </div>
 
@@ -70,9 +70,9 @@
         <div class="field field-method">
           <span class="field-label" id="lbl-method">They receive by</span>
           <div class="seg" role="radiogroup" aria-labelledby="lbl-method" id="methodSeg">
-            <button type="button" class="seg-btn is-on" role="radio" aria-checked="true"  data-method="bank">Bank transfer</button>
-            <button type="button" class="seg-btn"       role="radio" aria-checked="false" data-method="cash">Cash pickup</button>
-            <button type="button" class="seg-btn"       role="radio" aria-checked="false" data-method="wallet">Easypaisa / JazzCash</button>
+            <button type="button" class="seg-btn is-on" role="radio" aria-checked="true"  data-method="bank"   aria-label="Bank transfer"><span class="seg-full" aria-hidden="true">Bank transfer</span><span class="seg-short" aria-hidden="true">Bank</span></button>
+            <button type="button" class="seg-btn"       role="radio" aria-checked="false" data-method="cash"   aria-label="Cash pickup"><span class="seg-full" aria-hidden="true">Cash pickup</span><span class="seg-short" aria-hidden="true">Cash</span></button>
+            <button type="button" class="seg-btn"       role="radio" aria-checked="false" data-method="wallet" aria-label="Easypaisa or JazzCash mobile wallet"><span class="seg-full" aria-hidden="true">Easypaisa / JazzCash</span><span class="seg-short" aria-hidden="true">Wallet</span></button>
           </div>
           <p class="hint" id="methodHint">Most providers quote their best rate on bank deposits.</p>
         </div>
@@ -201,6 +201,6 @@
   </div>
 </footer>
 
-<script src="script.js"></script>
+<script src="script.js?v=4"></script>
 </body>
 </html>
