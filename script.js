@@ -162,6 +162,7 @@ function cacheDom() {
   el.chips      = document.getElementById('presetChips');
   el.methodHint = document.getElementById('methodHint');
   el.rows       = document.getElementById('rows');
+  el.resultsTitle = document.getElementById('resultsTitle');
   el.resultsSub = document.getElementById('resultsSub');
   el.vProvider  = document.getElementById('vProvider');
   el.vAmount    = document.getElementById('vAmount');
@@ -338,6 +339,17 @@ function render() {
   el.symbol.textContent = c.symbol;
   el.code.textContent = c.code;
   el.methodHint.textContent = METHOD_HINT[state.method];
+
+  /* The results heading names a currency on the corridor pages, so it has to
+     follow the pills — otherwise switching to UAE on the UK page leaves a
+     "GBP to PKR" heading sitting above a table of dirhams. Each page supplies
+     its own wording via data-template; one without a {code} placeholder (the
+     homepage) is currency-neutral and simply stays put. */
+  if (el.resultsTitle) {
+    var tpl = el.resultsTitle.getAttribute('data-template');
+    if (tpl) el.resultsTitle.textContent = tpl.replace('{code}', c.code);
+  }
+
   el.resultsSub.textContent =
     'Sending ' + sent(state.amount, state.corridor) + ' from ' + c.label +
     ' by ' + METHOD_LABEL[state.method] + ', ranked by what actually arrives in Pakistan.';
@@ -381,6 +393,17 @@ function arrowNav(container, attr, apply) {
 
 function init() {
   cacheDom();
+
+  /* Corridor landing pages set <body data-corridor="uae"> so the calculator
+     opens on the route that page is about. Falls back to UK on the homepage. */
+  var wanted = document.body.getAttribute('data-corridor');
+  if (wanted && CORRIDORS[wanted]) state.corridor = wanted;
+  Array.prototype.forEach.call(el.pills.children, function (b) {
+    var on = b.getAttribute('data-corridor') === state.corridor;
+    b.classList.toggle('is-on', on);
+    b.setAttribute('aria-checked', on ? 'true' : 'false');
+  });
+
   state.amount = CORRIDORS[state.corridor].start;
   el.amount.value = state.amount;
   renderChips();

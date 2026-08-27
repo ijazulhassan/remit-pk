@@ -129,7 +129,7 @@ a { color: var(--emerald); }
 .logo sup { font-size: .58em; top: -.45em; }
 .site-nav a {
   font-size: .875rem;
-  font-weight: 500;
+  font-weight: 600;
   color: var(--ink-soft);
   text-decoration: none;
   margin-left: 22px;
@@ -255,7 +255,7 @@ a { color: var(--emerald); }
   gap: 8px;
   font: inherit;
   font-size: .875rem;
-  font-weight: 500;
+  font-weight: 600;
   color: var(--ink-soft);
   background: var(--raised);
   border: 1px solid var(--line);
@@ -370,7 +370,7 @@ a { color: var(--emerald); }
 .seg-btn {
   font: inherit;
   font-size: .85rem;
-  font-weight: 500;
+  font-weight: 600;
   color: var(--ink-soft);
   background: transparent;
   border: 0;
@@ -615,7 +615,7 @@ a { color: var(--emerald); }
 .insight-line {
   font-family: var(--serif);
   font-size: clamp(1.1rem, 2.4vw, 1.4rem);
-  font-weight: 500;
+  font-weight: 600;
   line-height: 1.35;
   margin: 0;
 }
@@ -741,6 +741,160 @@ details p {
   margin: 0;
 }
 
+/* ---------------- breadcrumbs ---------------- */
+
+.crumbs {
+  font-family: var(--mono);
+  font-size: .74rem;
+  color: var(--ink-faint);
+  margin-bottom: 18px;
+  display: flex;
+  gap: 8px;
+  flex-wrap: wrap;
+}
+.crumbs a { color: var(--ink-soft); text-decoration: none; }
+.crumbs a:hover { color: var(--emerald); text-decoration: underline; }
+
+/* ---------------- corridor hub cards ---------------- */
+
+.guides-intro {
+  color: var(--ink-soft);
+  margin: 0 0 26px;
+  max-width: 62ch;
+}
+
+.corridor-cards {
+  display: grid;
+  grid-template-columns: repeat(3, 1fr);
+  gap: 16px;
+}
+.ccard {
+  display: flex;
+  flex-direction: column;
+  gap: 8px;
+  padding: 24px 22px;
+  background: var(--raised-2);
+  border: 1px solid var(--line);
+  border-radius: var(--r-md);
+  text-decoration: none;
+  color: var(--ink);
+  box-shadow: var(--shadow-sm);
+  transition: border-color .16s, box-shadow .16s, transform .16s;
+}
+.ccard:hover {
+  border-color: var(--emerald);
+  box-shadow: var(--shadow-md);
+  transform: translateY(-2px);
+}
+.ccard-route {
+  font-family: var(--mono);
+  font-size: .7rem;
+  letter-spacing: .08em;
+  text-transform: uppercase;
+  color: var(--emerald);
+}
+.ccard-title {
+  font-family: var(--serif);
+  font-size: 1.12rem;
+  font-weight: 600;
+  line-height: 1.25;
+}
+.ccard-note {
+  font-size: .88rem;
+  color: var(--ink-soft);
+  flex: 1;
+}
+.ccard-cta {
+  font-size: .82rem;
+  font-weight: 600;
+  color: var(--emerald);
+  margin-top: 4px;
+}
+
+/* ---------------- methodology ---------------- */
+
+.method { padding: 8px 0 56px; }
+.method h2 {
+  font-family: var(--serif);
+  font-size: clamp(1.4rem, 3vw, 1.85rem);
+  font-weight: 600;
+  letter-spacing: -.015em;
+  margin: 0 0 14px;
+}
+.method p { color: var(--ink-soft); margin: 0 0 14px; }
+.method p:last-child { margin-bottom: 0; }
+.formula {
+  font-family: var(--mono);
+  font-size: .92rem;
+  color: var(--ink) !important;
+  background: var(--raised);
+  border-left: 3px solid var(--emerald);
+  border-radius: var(--r-sm);
+  padding: 14px 18px;
+}
+
+/* ---------------- long-form corridor guides ---------------- */
+
+.guides h2 {
+  font-family: var(--serif);
+  font-size: clamp(1.3rem, 2.6vw, 1.6rem);
+  font-weight: 600;
+  letter-spacing: -.015em;
+  margin: 38px 0 12px;
+}
+.guides h2:first-child { margin-top: 0; }
+.guides > .wrap > p,
+.guides .guide p { color: var(--ink-soft); margin: 0 0 14px; }
+.guides strong { color: var(--ink); }
+
+.tips {
+  margin: 0 0 14px;
+  padding-left: 1.15em;
+  color: var(--ink-soft);
+}
+.tips li { margin-bottom: 9px; }
+.tips strong { color: var(--ink); }
+
+.crosslinks {
+  margin-top: 44px;
+  padding-top: 24px;
+  border-top: 1px solid var(--line);
+  display: flex;
+  align-items: center;
+  gap: 18px;
+  flex-wrap: wrap;
+}
+.crosslinks p {
+  margin: 0;
+  font-family: var(--mono);
+  font-size: .72rem;
+  letter-spacing: .08em;
+  text-transform: uppercase;
+  color: var(--ink-faint);
+}
+.crosslinks a {
+  font-size: .88rem;
+  font-weight: 600;
+  text-decoration: none;
+}
+.crosslinks a:hover { text-decoration: underline; }
+
+/* ---------------- footer nav ---------------- */
+
+.footer-nav {
+  display: flex;
+  gap: 20px;
+  flex-wrap: wrap;
+  margin-bottom: 16px;
+}
+.footer-nav a {
+  font-size: .85rem;
+  font-weight: 600;
+  text-decoration: none;
+}
+.footer-nav a:hover { text-decoration: underline; }
+.footer-brand sup { font-size: .58em; top: -.45em; }
+
 /* ============================================================
    RESPONSIVE
    Most visitors arrive on a phone, so the goal below the tablet
@@ -765,6 +919,7 @@ details p {
   .row-cta   { grid-area: cta; }
   .row-cta .btn { display: block; text-align: center; }
   .trust-list { grid-template-columns: 1fr; gap: 18px; }
+  .corridor-cards { grid-template-columns: 1fr; }
 }
 
 /* Small tablet / large phone — single-column calculator. */
