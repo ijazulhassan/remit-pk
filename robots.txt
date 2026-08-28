@@ -1,4 +1,4 @@
 User-agent: *
 Allow: /
 
-Sitemap: https://ijazulhassan.github.io/remit-pk/sitemap.xml
+Sitemap: https://remit-pk.ijazulhassan13.workers.dev/sitemap.xml
