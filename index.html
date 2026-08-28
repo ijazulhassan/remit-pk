@@ -26,7 +26,7 @@
 <link href="https://fonts.googleapis.com/css2?family=Fraunces:opsz,wght@9..144,600;9..144,700&family=IBM+Plex+Mono:wght@400;500&family=Inter:wght@400;600;700&display=swap" rel="stylesheet">
 <!-- Bump ?v= whenever you edit style.css or script.js, so returning
      visitors get the new file instead of a cached copy. -->
-<link rel="stylesheet" href="style.css?v=6">
+<link rel="stylesheet" href="style.css?v=10">
 
 <script type="application/ld+json">
 {
@@ -129,7 +129,7 @@
 <!-- ============ HERO + CALCULATOR ============ -->
 <section class="hero">
   <div class="wrap">
-    <p class="eyebrow"><span class="pulse"></span>Rates checked <time datetime="2026-08-26">26 August 2026</time></p>
+    <p class="eyebrow"><span class="pulse"></span>Rates checked <time id="fxStamp" datetime="2026-08-28">28 Aug 2026</time></p>
     <h1>Send money to Pakistan.<br><em>Keep more of it.</em></h1>
     <p class="hero-sub">Compare Wise, Remitly and WorldRemit on what actually reaches Pakistan &mdash; priced for <strong>your</strong> amount, not a generic example. No sign-up, no email, no guesswork.</p>
   </div>
@@ -187,6 +187,7 @@
     <div class="results-head">
       <h2 id="resultsTitle" data-template="What each provider actually delivers">What each provider actually delivers</h2>
       <p class="results-sub" id="resultsSub">Ranked by what lands in the recipient&rsquo;s hands, after fees and the provider&rsquo;s exchange-rate margin.</p>
+      <p class="fxnote" id="fxNote"></p>
     </div>
 
     <ol class="rows" id="rows"></ol>
@@ -210,7 +211,7 @@
 <noscript>
   <section class="results">
     <div class="wrap">
-      <p class="disclaimer"><strong>The live calculator needs JavaScript.</strong> Indicative pricing on &pound;500 UK &rarr; Pakistan by bank transfer: Wise &mdash; &pound;3.29 fee at 397.4 PKR (about Rs 197,400). Remitly &mdash; no fee at 393.1 PKR (about Rs 196,600). WorldRemit &mdash; &pound;1.99 fee at 391.8 PKR (about Rs 195,100).</p>
+      <p class="disclaimer"><strong>The live comparison needs JavaScript.</strong> It fetches the current mid-market rate and applies each provider’s fee and exchange-rate margin to the amount you enter, then ranks them by how many rupees actually reach Pakistan. Wise converts at the mid-market rate and charges a visible fee; Remitly and WorldRemit fold most of their margin into the rate instead.</p>
     </div>
   </section>
 </noscript>
@@ -313,6 +314,6 @@
   </div>
 </footer>
 
-<script src="script.js?v=6"></script>
+<script src="script.js?v=10"></script>
 </body>
 </html>

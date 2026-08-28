@@ -455,6 +455,25 @@ a { color: var(--emerald); }
 }
 .results-sub { color: var(--ink-soft); margin: 0; font-size: .95rem; }
 
+/* Live mid-market line — states the true rate and owns up to the margins
+   being estimates. Sits directly under the results subheading. */
+.fxnote {
+  margin: 10px 0 0;
+  padding: 10px 14px;
+  font-size: .82rem;
+  line-height: 1.5;
+  color: var(--ink-soft);
+  background: var(--raised);
+  border-left: 3px solid var(--emerald);
+  border-radius: var(--r-sm);
+  max-width: 80ch;
+}
+.fxnote strong {
+  color: var(--ink);
+  font-family: var(--mono);
+  font-size: .82rem;
+}
+
 .rows { list-style: none; margin: 0; padding: 0; display: grid; gap: 12px; }
 
 .row {
@@ -523,6 +542,23 @@ a { color: var(--emerald); }
   font-size: .88rem;
   font-variant-numeric: tabular-nums;
   color: var(--ink);
+}
+
+/* A 0.00% margin is the strongest thing a provider can say in this column,
+   so mark it rather than leaving it to read as just another number. */
+.fact-v.is-zero { color: var(--emerald); font-weight: 500; }
+
+/* Says what a 0.00% margin actually is, without pushing the number out of
+   the column or making the other rows read differently. */
+.fact-tag {
+  display: block;
+  font-style: normal;
+  font-size: .6rem;
+  letter-spacing: .04em;
+  line-height: 1.3;
+  color: var(--emerald);
+  opacity: .85;
+  margin-top: 1px;
 }
 
 .row-value { display: flex; flex-direction: column; gap: 5px; min-width: 0; }
